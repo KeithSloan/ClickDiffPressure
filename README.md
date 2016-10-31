@@ -1,6 +1,6 @@
 #Diff Pressure Click
 
-Using a Raspberry Pi to read differantial pressure
+Using a Raspberry Pi to read differential pressure
 ## Hardware
 I went for the 2-way shield but there is a single shield availabe`
 ### Hardware used

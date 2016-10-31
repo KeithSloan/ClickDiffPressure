@@ -1,4 +1,4 @@
-#Diff Pressure Click r
+#Diff Pressure Click
 
 Using a Raspberry Pi to read differantial pressure
 ## Hardware
@@ -18,7 +18,7 @@ From directory /home/pi issue command
 **git clone https://github.com/KeithSloan/ClickDiffPressure.git**
 
 ## Setting up SPI
-I2C must be enabled on the Raspberry Pi - 
+SPI must be enabled on the Raspberry Pi - 
 Configuration
 Run sudo raspi-config .
 Use the down arrow to select 9 Advanced Options.

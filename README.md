@@ -28,7 +28,7 @@ Also select yes when it tasks about automatically loading the kernel module.
 Use the right arrow to select the <Finish> button.
 Select yes when it asks to reboot.
 ## Required libraries
-Some programs use pigio to install see (http://abyz.co.uk/rpi/pigpio/download.html)
+Some programs use pigpio to install see (http://abyz.co.uk/rpi/pigpio/download.html)
 ##Feedback
 
     Feedback to keith@sloan-home.co.uk

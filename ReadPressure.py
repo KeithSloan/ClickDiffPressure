@@ -6,7 +6,10 @@ spi.mode = 0b11				# 1,1 - 3 bytes read; 0,0 - 4 bytes read
 try:
     while True:
         resp = spi.readbytes(3)		# read three bytes
+        dmmy = spi.readbytes(3)		# Dummy read for all 255 bytes
+        value = 256*resp[0] + resp[1]   # Discard least sig i.e. noise
 	print resp
+        print value
 	time.sleep(0.1)			# sleep for 0.1 secs
     # end while
 except KeyboardInterrupt :

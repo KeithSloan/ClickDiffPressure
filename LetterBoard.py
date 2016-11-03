@@ -3,32 +3,32 @@ from datetime import datetime
 def initTable() :
    global Table
    Table = [[0 for y in range(5)] for x in range(6)]
-   Table [0] [0] = "A"
-   Table [0] [1] = "E"
-   Table [0] [2] = "I"
-   Table [0] [3] = "O"
-   Table [0] [4] = "U"
-   Table [1] [0] = "B"
-   Table [1] [1] = "F"
-   Table [1] [2] = "J"
-   Table [1] [3] = "P"
-   Table [1] [4] = "V"
-   Table [2] [0] = "C"
-   Table [2] [1] = "G"
-   Table [2] [2] = "K"
-   Table [2] [3] = "Q"
-   Table [2] [4] = "W"
-   Table [3] [0] = "D"
-   Table [3] [1] = "H"
-   Table [3] [2] = "L"
-   Table [3] [3] = "R"
-   Table [3] [4] = "X"
-   Table [4] [2] = "M"
-   Table [4] [3] = "S"
-   Table [4] [4] = "Y"
-   Table [5] [2] = "N"
-   Table [5] [3] = "T"
-   Table [5] [4] = "Z"
+   Table [0] [0] = "A for Apple"
+   Table [0] [1] = "E for Echo"
+   Table [0] [2] = "I for India"
+   Table [0] [3] = "O for October"
+   Table [0] [4] = "U for Uniform"
+   Table [1] [0] = "B for Beta"
+   Table [1] [1] = "F for Fox"
+   Table [1] [2] = "J for Juno"
+   Table [1] [3] = "P for Papa"
+   Table [1] [4] = "V for Victor"
+   Table [2] [0] = "C for Charle"
+   Table [2] [1] = "G for Gary"
+   Table [2] [2] = "K for King"
+   Table [2] [3] = "Q for Quebec"
+   Table [2] [4] = "W for Water"
+   Table [3] [0] = "D for Delta"
+   Table [3] [1] = "H for Hotel"
+   Table [3] [2] = "L for Lima"
+   Table [3] [3] = "R for Romeo"
+   Table [3] [4] = "X for Xray"
+   Table [4] [2] = "M for Mother"
+   Table [4] [3] = "S for Seirra"
+   Table [4] [4] = "Y for Yankie"
+   Table [5] [2] = "N for November"
+   Table [5] [3] = "T for Tango"
+   Table [5] [4] = "Z for Zulu"
 
 def initLED():
 # Slot 2 pins
@@ -71,6 +71,7 @@ import spidev
 import time
 import sys
 from datetime import datetime
+import subprocess 
 import RPi.GPIO as GPIO
 initLED()
 spi = spidev.SpiDev()			# create spi object
@@ -98,6 +99,11 @@ try:
                  t1 = timemillisecs() 
                  print "t1 : "+str(t1)
                  state = 1
+		 if ( mode == 0 ) :
+    		    GPIO.output(LGpin,GPIO.LOW)
+		 else :
+    		    GPIO.output(LRpin,GPIO.LOW)
+
            else :			# Signal is LOW
               if ( state == 1 ) :
                  t2 = timemillisecs()
@@ -105,6 +111,10 @@ try:
 		 count += 1
                  state = 2
                  print "Pulse : "+str(t2-t1)
+         	 if ( mode == 0 ) :
+    		    GPIO.output(LGpin,GPIO.HIGH)
+		 else : 
+    		    GPIO.output(LRpin,GPIO.HIGH)
 	      if ( state == 2 ) :
 		 t3 = timemillisecs()
 		 if ((t3 - t2) > timeout ) :
@@ -114,7 +124,10 @@ try:
 			indicateHorzScan()
 		    else : 		# End HorzScan
 			x = count - 1
-			print"Letter Selected : "+Table[x][y]
+                        l = Table[x][y]
+		  	festival = subprocess.Popen(["festival","--tts"], stdin=subprocess.PIPE, universal_newlines=True)
+			festival.communicate(l)	
+			print"Letter Selected : "+l
 			indicateVertScan()
 		    state = 0
 		    count = 0

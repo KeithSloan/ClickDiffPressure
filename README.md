@@ -30,7 +30,9 @@ Select yes when it asks to reboot.
 ## Required Software libraries
 Some programs use pigpio to install see (http://abyz.co.uk/rpi/pigpio/download.html)
 LetterBoard needs festival text to speech
+
 **sudo apt-get install festival
+
 ## Feedback
 
     Feedback to keith@sloan-home.co.uk
